@@ -1,4 +1,4 @@
-include ../../common/make.config
+include ./rodinia_3.1/common/make.config
 CC := $(CUDA_DIR)/bin/nvcc
 
 CC_FLAGS = -gencode arch=compute_61,code=compute_61 -cudart shared
