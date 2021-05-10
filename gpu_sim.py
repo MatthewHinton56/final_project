@@ -24,6 +24,7 @@ static_shared_mem = 0 # Static shared memory available for the application
 phit_l2 = 0.0 #--> Estimation from real device <loads & stores>
 block_size = 0
 grid_size = 0
+config = ''
 
 
 ############################
@@ -65,8 +66,9 @@ def app(this, arg, *args): #Rodinia->Gaussain
 ######################################################################################
 
 def GPU_APP_Handler(self, msg, *args):
+	print ('Config: ' + config)
 	self.createProcess("app", app)
-	gpu_config = get_gpu_config(getattr(sys.modules[__name__], "K40m")) #K40m is one of the classes in [configs/GPU_config]
+	gpu_config = get_gpu_config(getattr(sys.modules[__name__], config)) #K40m is one of the classes in [configs/GPU_config]
 	self.generate_target_accelerator(gpu_config)
 	self.startProcess("app", self) 
 
@@ -82,6 +84,7 @@ if __name__ == "__main__":
 	block_size = eval(sys.argv[4])
 	grid_size = eval(sys.argv[5])
 	task_list = eval(sys.argv[6])
+	config = sys.argv[7]
   
 	modeldict = { 
             "model_name"    : "n01",

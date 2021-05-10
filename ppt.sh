@@ -11,5 +11,6 @@ static_shared_mem=$6
 phit_l2=$7
 block_size=$8
 grid_size=$9
-python gpu_sim.py $num_register $static_shared_mem $phit_l2 $block_size $grid_size "$task_list"
+config="${10}"
+python gpu_sim.py $num_register $static_shared_mem $phit_l2 $block_size $grid_size "$task_list" $config
 cat perf.0.out
