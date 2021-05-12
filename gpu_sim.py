@@ -49,12 +49,12 @@ def app(this, arg, *args): #Rodinia->Gaussain
 	core = node.cores[0]
 	vector_size = 1024
  
-	print (task_list)
-	print (block_size)
-	print (grid_size)
-	print (num_register)
-	print (static_shared_mem)
-	print (phit_l2) 
+	#print (task_list)
+	#print (block_size)
+	#print (grid_size)
+	#print (num_register)
+	#print (static_shared_mem)
+	#print (phit_l2) 
    
 
 	GPU_tasklist = [['KERNEL_CALL', 0, task_list, block_size, grid_size, num_register, static_shared_mem, phit_l2]]
@@ -66,7 +66,7 @@ def app(this, arg, *args): #Rodinia->Gaussain
 ######################################################################################
 
 def GPU_APP_Handler(self, msg, *args):
-	print ('Config: ' + config)
+	#print ('Config: ' + config)
 	self.createProcess("app", app)
 	gpu_config = get_gpu_config(getattr(sys.modules[__name__], config)) #K40m is one of the classes in [configs/GPU_config]
 	self.generate_target_accelerator(gpu_config)
