@@ -8,6 +8,7 @@ from gpu_sim import *
 path.append('../..')
 from ppt import *
 from subprocess import PIPE, STDOUT, Popen, check_call
+from os import path
 
 cu_directory = sys.argv[1]
 config_selection = sys.argv[2]
@@ -67,10 +68,10 @@ for root, dirs, files in os.walk(cu_directory):
     for file in files:
         if file.endswith(".cu"):
              #print(os.path.join(root, file))
-             check_call(['/opt/apps/cuda/11.0/bin/nvcc', '--ptx', os.path.join(root, file)], stdout=PIPE, stderr=STDOUT)
-             #os.system('/opt/apps/cuda/11.0/bin/nvcc --ptx ' + os.path.join(root, file))
+             Popen(['/opt/apps/cuda/11.0/bin/nvcc', '--ptx', os.path.join(root, file)], stdout=PIPE, stderr=STDOUT)
              ptx_file = file.replace('.cu', '.ptx')
-             build_kernel_map(ptx_file)
+	     if os.path.exists(ptx_file):
+                 build_kernel_map(ptx_file)
          
 input_file = sys.argv[3] 
 file_size = os.path.getsize(input_file)
