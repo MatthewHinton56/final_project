@@ -1,5 +1,5 @@
 ./run_trace.sh ./gpgpu-sim_distribution/configs/tested-cfgs/SM2_GTX480/ ./rodinia_3.1/cuda/hotspot3D/ 3D  "512 8 100 ../../data/hotspot3D/power_512x8 ../../data/hotspot3D/temp_512x8 output.out"
-./run_trace.sh ./gpgpu-sim_distribution/configs/tested-cfgs/SM2_GTX480/ ./rodinia_3.1/cuda/hybridsort/ hybridrt  "r"
+./run_trace.sh ./gpgpu-sim_distribution/configs/tested-cfgs/SM2_GTX480/ ./rodinia_3.1/cuda/hybridsort/ hybridsort  "r"
 ./run_trace.sh ./gpgpu-sim_distribution/configs/tested-cfgs/SM2_GTX480/ ./rodinia_3.1/cuda/dwt2d/ dwt2d "192.bmp -d 192x192 -f -5 -l 3"
 
 
