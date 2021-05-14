@@ -1,8 +1,8 @@
 import sys
 import os
 from sys import path
-path.append('/work2/08004/cslicker/maverick2/final_project/configs')
-from GPU_config_hotspot3D import *
+path.append('./configs')
+from GPU_config import *
 from PTXParser import *
 from gpu_sim import *
 path.append('../..')
@@ -71,12 +71,12 @@ for root, dirs, files in os.walk(cu_directory):
              Popen(['/opt/apps/cuda/11.0/bin/nvcc', '--ptx', os.path.join(root, file)], stdout=PIPE, stderr=STDOUT)
              ptx_file = file.replace('.cu', '.ptx')
 	     if os.path.exists(ptx_file):
-                 build_kernel_map(ptx_file)
+             	build_kernel_map(ptx_file)
          
 row = eval(sys.argv[3])
 col = eval(sys.argv[3])
 layers = eval(sys.argv[4])
-itertions = eval(sys.argv[5])
+iterations = eval(sys.argv[5])
 #file_size = os.path.getsize(input_file)
 num_elements = row * col
 num_threads_per_block = 256
@@ -88,13 +88,14 @@ num_blocks = num_elements // num_threads_per_block
 IPC = 0.0
 MIPS = 0.0
 Time = 0.0
-for i in range(itertions)
-	output = (str(simulate_kernel('hotspotOpt1', [layers - 2], config_selection, num_threads_per_block, num_blocks, .5)))
-	IPC += output['IPC']
-	MIPS += output['MIPS']
-	Time += output['Time']
-IPC/itertions
-MIPS/itertions
-print("IPC: " + IPC)
-print("MIPS: " + MIPS)
-print("Time: " + Time)
+#for i in range(itertions):
+output = (simulate_kernel('hotspotOpt1', [layers - 2], config_selection, num_threads_per_block, num_blocks, .5))
+
+#	IPC += output['IPC']
+#	MIPS += output['MIPS']
+#	Time += output['Time']
+#IPC/itertions
+#MIPS/itertions
+print("IPC: " + str(output['IPC']))
+print("MIPS: " + str(output['MIPS']))
+print("Time: " + str(output['Time']*iterations))
